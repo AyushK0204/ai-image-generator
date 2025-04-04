@@ -4,12 +4,20 @@ import { assets } from "../assets/assets";
 const Header = () => {
   return (
     <div className="flex flex-col justify-center items-center text-center my-20">
-      <div className="text-stone-500 inline-flex text-center gap-2 bg-white px-6 py-1 rounded-full border bg-neutral-500">
-        <p>Best text to image generator</p>
+      <div className="text-stone-500 inline-flex text-center gap-2 bg-white px-6 py-1 rounded-full border border-neutral-500">
+        <p>High-fidelity text-to-visual engine</p>
         <img src={assets.star_icon} alt="" />
       </div>
-      <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center">
-        Turn text to <span className="text-blue-600"> image</span> in seconds.
+      {/* <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center">
+        Watch your words become <span className="text-blue-600"> images</span>{" "}
+        instantly!
+      </h1> */}
+      <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center  ">
+        Watch your words become{" "}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-pulse">
+          images
+        </span>{" "}
+        instantly!
       </h1>
       <p className="text-center max-w-xl mx-auto mt-5">
         Unleash your creativity with AI. Turn your imagination into visual art
