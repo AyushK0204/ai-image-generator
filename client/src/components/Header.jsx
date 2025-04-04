@@ -23,7 +23,13 @@ const Header = () => {
         Unleash your creativity with AI. Turn your imagination into visual art
         in seconds - just type and watch the magic happen.
       </p>
-      <button className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full">
+      <button
+        className="sm:text-lg bg-black w-auto mt-8 flex items-center gap-2 px-12 py-3 rounded-full 
+  bg-gradient-to-r from-pink-800 via-purple-800 to-blue-800 text-white text-lg font-semibold 
+  transition-all duration-600 m-auto hover:scale-105
+  hover:bg-gradient-to-r hover:from-red-800 hover:via-yellow-800 hover:to-blue-800 
+  animate-pulse"
+      >
         Generate Images
         <img className="h-6" src={assets.star_group} alt="" />
       </button>
