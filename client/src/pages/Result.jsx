@@ -2,7 +2,7 @@ import React, { use, useState } from "react";
 import { assets } from "../assets/assets";
 
 const Result = () => {
-  const [image, setImage] = useState(assets.sample_img_1);
+  const [image, setImage] = useState(assets.sample_img_2);
   const [isImageLoaded, setIsImageLoaded] = useState(true);
   const [loading, setLoading] = useState(true);
   const [input, setInput] = useState("");
