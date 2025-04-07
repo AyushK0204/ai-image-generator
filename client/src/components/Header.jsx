@@ -8,10 +8,7 @@ const Header = () => {
         <p>High-fidelity text-to-visual engine</p>
         <img src={assets.star_icon} alt="" />
       </div>
-      {/* <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center">
-        Watch your words become <span className="text-blue-600"> images</span>{" "}
-        instantly!
-      </h1> */}
+
       <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:max-w-[590px] mx-auto mt-10 text-center  ">
         Watch your words become{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 [animation:pulseCustom_1s_ease-in-out_infinite]">
@@ -25,10 +22,10 @@ const Header = () => {
       </p>
       <button
         className="sm:text-lg bg-black w-auto mt-8 flex items-center gap-2 px-12 py-3 rounded-full 
-  bg-gradient-to-r from-pink-800 via-purple-800 to-blue-800 text-white text-lg font-semibold 
-  transition-all duration-600 m-auto hover:scale-105
-  hover:bg-gradient-to-r hover:from-red-800 hover:via-yellow-800 hover:to-blue-800
-  [animation:zoomInOut_2s_ease-in-out_infinite]"
+          bg-gradient-to-r from-pink-800 via-purple-800 to-blue-800 text-white text-lg font-semibold 
+          transition-all duration-600 m-auto hover:scale-105
+          hover:bg-gradient-to-r hover:from-red-800 hover:via-yellow-800 hover:to-blue-800
+          [animation:zoomInOut_2s_ease-in-out_infinite]"
       >
         Generate Images
         <img className="h-6" src={assets.star_group} alt="" />
