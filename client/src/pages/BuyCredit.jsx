@@ -26,7 +26,7 @@ const BuyCredit = () => {
               <span className=" text-3xl font-medium">₹{item.price}</span> /{" "}
               {item.credits} credits
             </p>
-            <button className=" w-full bg-gray-800 text-white hover:bg-gradient-to-r hover:text-black transition-all duration-200 hover:rounded-4xl hover:scale-120 rounded-4xl rounded-bl-none rounded-tr-none mt-8 text-sm py-2.5 max-w-52">
+            <button className=" w-full bg-gray-800 text-white hover:bg-blue-500 transition-all duration-200 hover:rounded-4xl hover:scale-120 rounded-4xl rounded-bl-none rounded-tr-none mt-8 text-sm py-2.5 max-w-52 hover:[animation:pulseCustom_1s_ease-in-out_infinite]">
               {user ? "Purchased" : "Buy Now!"}
             </button>
           </div>
