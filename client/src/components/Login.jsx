@@ -16,7 +16,7 @@ const Login = () => {
 
     setTimeout(() => {
       setIsVisible(true);
-    }, 10);
+    }, 5);
 
     return () => {
       document.body.style.overflow = "unset";
@@ -33,13 +33,13 @@ const Login = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full z-10  backdrop-blur-sm bg-black/50 flex justify-center items-center transition-opacity duration-500 ${
+      className={`fixed top-0 left-0 w-full h-full z-10  backdrop-blur-sm bg-black/60 flex justify-center items-center transition-opacity duration-500 ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
       <form
-        className={` relative bg-gradient-to-tr from-green-100 to-yellow-100 p-10  text-slate-500 rounded-[70px] rounded-bl-none rounded-tr-none border-3 border-t-0 border-b-0 border-r-0 border-blue-500 transition-transform duration-500 ${
-          isVisible ? "scale-100" : "scale-90"
+        className={` relative bg-gradient-to-tl from-gray-400 via-gray-100 to-gray-400 p-10  text-slate-500 rounded-[70px] rounded-bl-none rounded-tr-none border-4 border-t-0 border-b-0  border-black transition-transform duration-500 ${
+          isVisible ? "scale-100" : "scale-80"
         }`}
       >
         <h1 className=" text-center text-2xl text-neutral-700 font-medium">

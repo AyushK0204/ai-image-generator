@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import { assets } from "../assets/assets";
+import { motion } from "motion/react";
 
 const Result = () => {
   const [image, setImage] = useState(assets.sample_img_2);
@@ -10,7 +11,11 @@ const Result = () => {
   const onSubmitHandler = async (e) => {};
 
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0.2, y: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       onSubmit={onSubmitHandler}
       className="flex flex-col min-h-[90vh] justify-center items-center"
     >
@@ -48,25 +53,25 @@ const Result = () => {
           </button>
         </div>
       ) : (
-        <div class="flex flex-col bg-blue-500 w-64 p-1 mt-10 rounded-3xl gap-1 shadow-2xl shadow-blue-500/50">
+        <div class="flex flex-col bg-black w-64 p-1 mt-10 rounded-3xl gap-1 shadow-2xl shadow-black">
           <a
             onClick={() => {
               setIsImageLoaded(false);
             }}
-            className="bg-blue-500 hover:bg-blue-600 hover:scale-103 hover:translate-y-[-7px] hover:rounded-[23px] hover:rounded-bl-none hover:rounded-br-none px-6 py-2 rounded-2xl rounded-bl-lg rounded-br-lg transition-all text-center text-white font-medium cursor-pointer"
+            className="bg-black text-white hover:bg-white hover:text-black hover:scale-104 hover:translate-y-[-7px] hover:rounded-[23px] hover:rounded-bl-none hover:rounded-br-none px-6 py-2 rounded-2xl rounded-bl-lg rounded-br-lg transition-all text-center font-medium cursor-pointer"
           >
             Generate Another
           </a>
           <a
             href={image}
             download
-            class="bg-blue-500 hover:bg-blue-600 hover:scale-103 hover:translate-y-[7px] hover:rounded-[23px] hover:rounded-tl-none hover:rounded-tr-none px-6 py-2 rounded-2xl rounded-tl-lg rounded-tr-lg transition-all text-center text-white font-medium cursor-pointer"
+            class="bg-black text-white hover:bg-white hover:text-black hover:scale-104 hover:translate-y-[7px] hover:rounded-[23px] hover:rounded-tl-none hover:rounded-tr-none px-6 py-2 rounded-2xl rounded-tl-lg rounded-tr-lg transition-all text-center font-medium cursor-pointer"
           >
             Download
           </a>
         </div>
       )}
-    </form>
+    </motion.form>
   );
 };
 

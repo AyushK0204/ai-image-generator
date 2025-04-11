@@ -12,7 +12,7 @@ const App = () => {
   const { showLogin } = useContext(AppContext);
 
   return (
-    <div className="px-4 sm:px-10 md:px-14 lg:px-28 min-h-screen w-[101%] bg-gradient-to-b from-teal-100 to-orange-100">
+    <div className="px-4 sm:px-10 md:px-14 lg:px-28 min-h-screen w-full bg-gradient-to-tl from-gray-500 via-gray-300 to-gray-500">
       <Navbar />
       {showLogin && <Login />}
       <Routes>
