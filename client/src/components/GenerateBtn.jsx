@@ -29,7 +29,7 @@ const GenerateBtn = () => {
 
       <button
         onClick={onClickHandler}
-        className="px-12 py-3 inline-flex gap-2 text-black font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white shadow-yellow-500/50 hover:scale-105 hover:border-black hover:shadow-white hover:shadow-2xl focus:outline-none hover:bg-white hover:text-black"
+        className="px-12 py-3 inline-flex gap-2 text-black font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white shadow-white hover:scale-105 hover:border-none hover:shadow-black hover:shadow-2xl focus:outline-none hover:bg-gradient-to-b hover:from-white hover:via-gray-200 hover:to-gray-700 hover:text-black"
       >
         Generate Image
         <img src={assets.star_group} alt="" className="h-6" />
