@@ -1,11 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState("Login");
-  const { setShowLogin } = useContext(AppContext);
+  const { setShowLogin, backendUrl, setToken, setUser } =
+    useContext(AppContext);
   const [isVisible, setIsVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (state === "Login") {
+        const { data } = await axios.post(backendUrl + "/api/user/login", {
+          email,
+          password,
+        });
+        if (data.success) {
+          setToken(data.token);
+          setUser(data.user);
+          localStorage.setItem("token", data.token);
+          setShowLogin(false);
+        } else {
+          toast.error(data.message);
+        }
+      } else {
+        const { data } = await axios.post(backendUrl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+        if (data.success) {
+          setToken(data.token);
+          setUser(data.user);
+          localStorage.setItem("token", data.token);
+          setShowLogin(false);
+        } else {
+          toast.error(data.message);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   useEffect(() => {
     const scrollbarWidth =
@@ -38,6 +80,7 @@ const Login = () => {
       }`}
     >
       <form
+        onSubmit={onSubmitHandler}
         className={` relative bg-gradient-to-tl from-gray-400 via-gray-100 to-gray-400 p-10  text-slate-500 rounded-[70px] rounded-bl-none rounded-tr-none border-4 border-t-0 border-b-0  border-black transition-transform duration-500 ${
           isVisible ? "scale-100" : "scale-80"
         }`}
@@ -52,6 +95,8 @@ const Login = () => {
           <div className=" border-2 px-6 py-2 flex items-center gap-2 rounded-full mt-5 border-l-0 border-t-0 border-r-0 shadow-2xl bg-white/50 hover:translate-y-[-5%] transition-all duration-300 hover:bg-white">
             <img src={assets.person_icon} alt="" />
             <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
               type="text"
               placeholder="Full Name"
               required
@@ -62,6 +107,8 @@ const Login = () => {
         <div className=" border-2 px-6 py-2 flex items-center gap-2 rounded-full mt-4 border-l-0 border-t-0 border-r-0 shadow-2xl bg-white/50 hover:translate-y-[-5%] transition-all duration-300 hover:bg-white">
           <img src={assets.email_icon} alt="" />
           <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             type="email"
             placeholder="Email ID"
             required
@@ -71,6 +118,8 @@ const Login = () => {
         <div className=" border-2 px-6 py-2 flex items-center gap-2 rounded-full mt-4 border-l-0 border-t-0 border-r-0 shadow-2xl bg-white/50 hover:translate-y-[-5%] transition-all duration-300 hover:bg-white">
           <img src={assets.lock_icon} alt="" />
           <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             type="password"
             placeholder="Password"
             required
