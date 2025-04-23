@@ -2,9 +2,70 @@ import React, { useContext } from "react";
 import { assets, plans } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const BuyCredit = () => {
-  const { user } = useContext(AppContext);
+  const { user, backendUrl, loadCreditData, token, setShowLogin } =
+    useContext(AppContext);
+  const navigate = useNavigate();
+
+  const initPay = async (order) => {
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: order.currency,
+      name: "Credits Payment",
+      description: "Credits Payment",
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        try {
+          const { data } = await axios.post(
+            backendUrl + "/api/user/verify-razor",
+            response,
+            {
+              headers: { token },
+            }
+          );
+          if (data.success) {
+            loadCreditData();
+            navigate("/");
+            toast.success("Credits Added!");
+          } else {
+            toast.error(data.message);
+          }
+        } catch (error) {
+          toast.error(error.message);
+        }
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
+  const paymentRazorpay = async (planId) => {
+    try {
+      if (!user) {
+        setShowLogin(true);
+      }
+      const { data } = await axios.post(
+        backendUrl + "/api/user/pay-razor",
+        { planId },
+        {
+          headers: { token },
+        }
+      );
+      if (data.success) {
+        initPay(data.order);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <motion.div
@@ -33,8 +94,13 @@ const BuyCredit = () => {
               <span className=" text-3xl font-medium">₹{item.price}</span> /{" "}
               {item.credits} credits
             </p>
-            <button className=" w-full bg-gray-800 text-white hover:bg-blue-500 transition-all duration-200 hover:rounded-4xl hover:scale-120 rounded-4xl rounded-bl-none rounded-tr-none mt-8 text-sm py-2.5 max-w-52 hover:[animation:pulseCustom_1s_ease-in-out_infinite]">
-              {user ? "Purchased" : "Buy Now!"}
+            <button
+              onClick={() => {
+                paymentRazorpay(item.id);
+              }}
+              className=" w-full bg-gray-800 text-white hover:bg-blue-500 transition-all duration-200 hover:rounded-4xl hover:scale-120 rounded-4xl rounded-bl-none rounded-tr-none mt-8 text-sm py-2.5 max-w-52 hover:[animation:pulseCustom_1s_ease-in-out_infinite]"
+            >
+              {user ? "Purchase" : "Get Started"}
             </button>
           </div>
         ))}
