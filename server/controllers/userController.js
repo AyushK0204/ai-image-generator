@@ -1,5 +1,4 @@
 import userModel from "../models/userModel.js";
-import bcrypt from "bcrypt";
 import generateToken from "../utils/generateToken.js";
 import razorpay from "razorpay";
 import transactionModel from "../models/transactionModel.js";
@@ -20,13 +19,11 @@ export const registerUser = async (req, res) => {
         message: "User already registered!",
       });
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
 
     const userData = {
       name,
       email,
-      password: hashedPassword,
+      password,
     };
     const newUser = new userModel(userData);
     const user = await newUser.save();
@@ -49,7 +46,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({ email }).select("+password");
     if (!user) {
       return res.json({
         success: false,
