@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     minLength: [8, "Password must be at least 8 characters"],
     select: false,
   },
+  creditBalance: {
+    type: Number,
+    default: 5,
+  },
 });
 
 userSchema.pre("save", async function (next) {

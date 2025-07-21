@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import razorpay from "razorpay";
 import transactionModel from "../models/transactionModel.js";
+import bcrypt from "bcrypt";
 
 export const registerUser = async (req, res) => {
   try {
